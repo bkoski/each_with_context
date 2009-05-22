@@ -1,0 +1,47 @@
+= each_with_context
+
+Inspired by the Liquid templating language's nice {for loop goodies}[http://wiki.github.com/tobi/liquid/liquid-for-designers],
+each_with_context provides some contextual information about an element in an each loop.
+
+If you've ever found yourself writing an <tt>each_with_index</tt> and 
+checking <tt>i == 0</tt> to see if the element is the first, or wondering whether the
+next element is differs from the current, this gem is for you.
+
+== INSTALLATION
+
+To use, just install the gem:
+
+  sudo gem install bkoski-each_with_context --source http://gems.github.com
+  
+and
+
+  require 'each_with_context'
+  
+Now you can call <tt>each_with_context</tt> on anything that's already Enumerable[http://www.ruby-doc.org/core/classes/Enumerable.html].
+
+
+== USAGE
+
+each_with_context accepts a block with two params: the element, and an EnumerableContext describing
+the element.  For example:
+
+  [1,2,3].each_with_context do |num,context|
+    
+    # Here, you can call:
+    context.first? # true if num is first element
+    context.last? # true if num is last element
+   
+    context.edge  # returns :first if first?, :last if last?, nil otherwise
+                  # useful when determining CSS selectors
+                   
+    context.next # next element; nil if that doesn't exist
+    context.previous # previous element; nil if that doesn't exist
+   
+    context.next_differs_on?(:some-method)      # These methods return true if element.some_method != next/previous.some_method
+    context.previous_differs_on(:some-method)   # If there is no next/previous, they return nil
+
+  end
+
+== COPYRIGHT
+
+Copyright (c) 2009 Ben Koski. See LICENSE for details.

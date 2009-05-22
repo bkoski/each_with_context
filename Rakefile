@@ -4,11 +4,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "each_with_context"
-    s.summary = %Q{TODO}
-    s.email = "bkoski@nytimes.com"
+    s.summary = %Q{Get contextual information about an element in an each loop}
+    s.email = "gems@benkoski.com"
     s.homepage = "http://github.com/bkoski/each_with_context"
     s.description = "TODO"
     s.authors = ["Ben Koski"]
+    s.files = FileList["{lib,lib/each_with_context,test}**/*", "README.rdoc", "LICENSE"]   
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -39,13 +40,6 @@ begin
   end
 rescue LoadError
   puts "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-end
-
-begin
-  require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new(:features)
-rescue LoadError
-  puts "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
 end
 
 task :default => :test

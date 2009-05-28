@@ -154,4 +154,72 @@ class TestEachWithContext < Test::Unit::TestCase
     end
   end
   
+  context "next_is?" do
+    setup do
+      @collection = [1,2,3,4]
+    end
+
+    should "yield block with element as first parameter" do
+      @collection.each_with_context do |element, c|
+        unless c.last?
+          c.next_is? { |e,n| assert_equal(element, e) }
+        end
+      end
+    end
+    
+    should "yield block with next element as second parameter" do
+      @collection.each_with_context do |element, c|
+        unless c.last?
+          c.next_is? { |e,n| assert_equal(c.next, n) }
+        end
+      end
+    end
+    
+    should "return nil if there is no next element" do
+      @collection.each_with_context do |element, c|
+        assert_nil(c.next_is? { |e,n| 29 }) if c.last?
+      end
+    end
+    
+    should "return value returned by block" do
+      @collection.each_with_context do |element, c|
+        assert_equal(49, c.next_is? { |e,n| 49 }) unless c.last?
+      end
+    end
+  end
+  
+  context "previous_is?" do
+    setup do
+      @collection = [1,2,3,4]
+    end
+
+    should "yield block with element as first parameter" do
+      @collection.each_with_context do |element, c|
+        unless c.first?
+          c.previous_is? { |e,p| assert_equal(element, e) }
+        end
+      end
+    end
+    
+    should "yield block with previous element as second parameter" do
+      @collection.each_with_context do |element, c|
+        unless c.first?
+          c.previous_is? { |e,p| assert_equal(c.previous, p) }
+        end
+      end
+    end
+    
+    should "return nil if there is no previous element" do
+      @collection.each_with_context do |element, c|
+        assert_nil(c.previous_is? { |e,p| 'test-value' }) if c.first?
+      end
+    end
+    
+    should "return value returned by block" do
+      @collection.each_with_context do |element, c|
+        assert_equal('test-value', c.previous_is? { |e,p| 'test-value' }) unless c.first?
+      end
+    end
+  end
+  
 end

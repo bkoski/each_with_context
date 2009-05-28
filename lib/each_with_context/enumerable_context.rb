@@ -54,6 +54,18 @@ class EnumerableContext
     end
   end
   
+  # Yields a block with element, next_element as params; returns value returned by block
+  # Returns nil if there is no next element.
+  def next_is? &block
+    last? ? nil : yield(element, self.next)
+  end
+  
+  # Yields a block with element, previous_element as params; returns value returned by block
+  # Returns nil if there is no previous element.
+  def previous_is? &block
+    first? ? nil : yield(element, self.previous)
+  end
+  
   private
   # Returns the element at the current index
   def element

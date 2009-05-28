@@ -25,7 +25,7 @@ Now you can call <tt>each_with_context</tt> on anything that's already Enumerabl
 each_with_context accepts a block with two params: the element, and an EnumerableContext describing
 the element.  For example:
 
-  [1,2,3].each_with_context do |num,context|
+  [1,2,3].each_with_context do |num, context|
     
     # Here, you can call:
     context.first? # true if num is first element
@@ -38,8 +38,11 @@ the element.  For example:
     context.previous # previous element; nil if that doesn't exist
    
     context.next_differs_on?(:some-method)      # These methods return true if element.some_method != next/previous.some_method
-    context.previous_differs_on(:some-method)   # If there is no next/previous, they return nil
-
+    context.previous_differs_on?(:some-method)   # If there is no next/previous, they return nil
+    
+    context.previous_is? {|element, previous_element| previous_element > element} # These methods yield element and next/previous, then return the result of the block
+    context.next_is? {|element, next_element| next_element * 2 == element}        # Useful for more advanced comparisons. Method returns nil if there is no next/previous.
+    
   end
 
 == COPYRIGHT

@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Koski"]
-  s.date = %q{2009-05-28}
+  s.date = %q{2009-07-15}
   s.description = %q{TODO}
   s.email = %q{gems@benkoski.com}
   s.files = ["lib/each_with_context", "lib/each_with_context.rb", "lib/each_with_context/enumerable.rb", "lib/each_with_context/enumerable_context.rb", "test/test_each_with_context.rb", "test/test_helper.rb", "README.rdoc", "LICENSE"]

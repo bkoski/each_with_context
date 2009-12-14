@@ -7,7 +7,7 @@ begin
     s.summary = %Q{Get contextual information about an element in an each loop}
     s.email = "gems@benkoski.com"
     s.homepage = "http://github.com/bkoski/each_with_context"
-    s.description = "TODO"
+    s.description = "Contextual information about an element in an each loop"
     s.authors = ["Ben Koski"]
     s.files = FileList["{lib,lib/each_with_context,test}**/*", "README.rdoc", "LICENSE"]   
   end
